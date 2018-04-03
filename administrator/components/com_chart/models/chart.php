@@ -8,7 +8,7 @@
 
 defined('_JEXEC') or die();
 
-class ChartModelChart extends \Joomla\CMS\MVC\Model\BaseDatabaseModel
+class ChartModelChart extends \Joomla\CMS\MVC\Model\AdminModel
 {
     /*
      *
@@ -24,5 +24,28 @@ class ChartModelChart extends \Joomla\CMS\MVC\Model\BaseDatabaseModel
         $db->execute();
 
         return $db->loadObjectList();
+    }
+
+    public function getTableColumns($table)
+    {
+        $db = $this->getDbo();
+
+        $query = $db->getQuery(true);
+        $query = "DESCRIBE $table";
+
+        $db->setQuery($query);
+        $db->execute();
+
+        return $db->loadObjectList();
+    }
+
+    public function getForm($data = array(), $loadData = true)
+    {
+        // TODO: Implement getForm() method.
+        $form = $this->loadForm('com_chart.tables', 'tables', array('control'=>'jform'));
+
+        if(empty($form)) return false;
+
+        return $form;
     }
 }
