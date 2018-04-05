@@ -11,9 +11,10 @@ defined('_JEXEC') or die();
 echo "Second form";
 
 //var_dump($this->columnsList);
+//var_dump($this->tableName);
 ?>
 
-<form method="post" action="" name="adminform" id="adminform">
+<form method="post" action="<?php echo JRoute::_('index.php?option=com_chart&task=save.record')?>" name="adminform" id="adminform">
     <div class="form-horizontal">
         <div class="row-fluid control-group">
             <div class="span6">
@@ -54,11 +55,13 @@ echo "Second form";
             </div>
         </div>
 
+        <input type="hidden" name="tablename" value="<?php echo $this->tableName;?>">
+
         <div class="row-fluid control-group">
             <div class="span6">
                 <input type="submit" name="save" value="Validati selectia">
             </div>
-            <div class="span6 controls">
+            <div class="span6">
                 <input type="submit" name="cancel" value="Anulare">
             </div>
         </div>

@@ -48,4 +48,23 @@ class ChartModelChart extends \Joomla\CMS\MVC\Model\AdminModel
 
         return $form;
     }
+
+    public function save($data)
+    {
+        $db = $this->getDbo();
+        $query = $db->getQuery(true);
+
+        $fields = array($db->qn('tabel').' = '.$db->q("$data[tablename]"),
+                        $db->qn('selectie').' = '.$db->q("$data[interval]"),
+                        $db->qn('subiect').' = '.$db->q("$data[subiect]"),
+                        $db->qn('valoare').' = '.$db->q("$data[valoare]"),
+                        );
+        $conditions = array($db->qn('id').' = 1');
+
+        $query->update($db->qn('#__chart_datasource'))->set($fields)->where($conditions);
+
+        $db->setQuery($query);
+
+        return $db->execute();
+    }
 }

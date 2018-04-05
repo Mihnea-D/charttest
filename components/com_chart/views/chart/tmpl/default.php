@@ -10,7 +10,7 @@ defined('_JEXEC') or die();
 
 //$resultList = $this->model->getCount(4, 7);
 
-//var_dump($this->resultList);
+var_dump($this->resultList);
 $resultList = $this->resultList;
 
 if($resultList)
